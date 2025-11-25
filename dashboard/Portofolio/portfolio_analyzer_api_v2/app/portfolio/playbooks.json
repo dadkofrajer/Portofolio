@@ -1,0 +1,57 @@
+[
+  {
+    "id": "plbk_ai_project_v1",
+    "title": "Ship a themed ML project",
+    "applies_if": {
+      "lens": "Curiosity",
+      "theme": "AI",
+      "min_weeks": 4
+    },
+    "est_hours": 20,
+    "min_runway_weeks": 4,
+    "steps": [
+      {
+        "title": "Define problem & dataset",
+        "hours": 3,
+        "dod": [
+          "dataset link",
+          "problem statement"
+        ],
+        "deps": []
+      },
+      {
+        "title": "Baseline model & metrics",
+        "hours": 6,
+        "dod": [
+          "notebook",
+          "metric table"
+        ],
+        "deps": [
+          0
+        ]
+      },
+      {
+        "title": "Experiment log (3 variants)",
+        "hours": 6,
+        "dod": [
+          "log with 3 experiments"
+        ],
+        "deps": [
+          1
+        ]
+      },
+      {
+        "title": "Publish README + demo",
+        "hours": 5,
+        "dod": [
+          "README",
+          "2-min demo"
+        ],
+        "deps": [
+          2
+        ]
+      }
+    ],
+    "quick_links": []
+  }
+]

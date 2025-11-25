@@ -1,0 +1,106 @@
+{
+  "country_tracks": [
+    "US"
+  ],
+  "schools": [
+    "Georgia Tech"
+  ],
+  "deadlines": {
+    "Georgia Tech": "2026-01-04"
+  },
+  "weekly_hours_cap": 8,
+  "school_context": {
+    "name": "Georgia Institute of Technology",
+    "application_platform": "Common App",
+    "application_rounds": [
+      {
+        "round": "RD",
+        "closing_date": "2026-01-04",
+        "binding": false
+      }
+    ],
+    "test_policy": {
+      "admission_use": "considered_if_submitted"
+    },
+    "mid50_scores": {
+      "sat_composite": [
+        1370,
+        1460,
+        1530
+      ]
+    },
+    "factor_importance": {
+      "rigor": "very_important",
+      "gpa": "very_important",
+      "essay": "important",
+      "ec": "important",
+      "test_scores": "considered",
+      "recommendations": "considered"
+    },
+    "recommenders_required": 1,
+    "supplemental_essays": [
+      "Why Georgia Tech (300)"
+    ]
+  },
+  "student_profile": {
+    "student_id": "student_123",
+    "current_grade": "Year 13",
+    "weekly_hours_cap": 8,
+    "gpa_unweighted": 3.8,
+    "intended_major": "Computer Science",
+    "curriculum": "A-Levels",
+    "grades_by_subject": {
+      "Mathematics": "A*",
+      "Computer Science": "A",
+      "Physics": "A"
+    },
+    "tests": {
+      "sat": {
+        "score": 1420,
+        "prep_status": "taken"
+      }
+    },
+    "constraints": []
+  },
+  "portfolio": [
+    {
+      "id": "e1",
+      "title": "Robotics team lead",
+      "lens": "Leadership",
+      "type": "Club",
+      "role_level": "Lead",
+      "area_of_activity": "Robotics",
+      "start_date": "2024-09-01",
+      "end_date": "2025-06-01",
+      "hours_per_week": 4,
+      "people_impacted": 30,
+      "team_size": 15,
+      "awards": [
+        {
+          "level": "regional"
+        }
+      ],
+      "theme_tags": [
+        "Robotics"
+      ]
+    },
+    {
+      "id": "e2",
+      "title": "ML wildfire classifier",
+      "lens": "Curiosity",
+      "type": "Project",
+      "role_level": "Founder",
+      "area_of_activity": "Machine Learning",
+      "start_date": "2024-10-01",
+      "end_date": "2024-12-15",
+      "hours_total": 80,
+      "people_impacted": 0,
+      "theme_tags": [
+        "AI"
+      ],
+      "artifact_links": [
+        "https://github.com/example/wildfire-classifier"
+      ]
+    }
+  ]
+}

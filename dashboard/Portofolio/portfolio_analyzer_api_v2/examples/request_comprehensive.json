@@ -1,0 +1,229 @@
+{
+  "country_tracks": ["US"],
+  "schools": ["Georgia Tech", "MIT"],
+  "deadlines": {
+    "Georgia Tech": "2026-01-04",
+    "MIT": "2026-01-01"
+  },
+  "weekly_hours_cap": 12,
+  "school_context": {
+    "name": "Georgia Institute of Technology",
+    "application_platform": "Common App",
+    "application_rounds": [
+      {
+        "round": "RD",
+        "closing_date": "2026-01-04",
+        "binding": false
+      }
+    ],
+    "test_policy": {
+      "admission_use": "considered_if_submitted",
+      "latest_submission_date": "2025-12-15"
+    },
+    "mid50_scores": {
+      "sat_composite": [1370, 1460, 1530],
+      "act_composite": [31, 33, 35]
+    },
+    "gpa_profile": {
+      "avg_hs_gpa": 3.9,
+      "submitted_gpa_pct": 95
+    },
+    "factor_importance": {
+      "rigor": "very_important",
+      "gpa": "very_important",
+      "essay": "important",
+      "ec": "important",
+      "test_scores": "considered",
+      "recommendations": "considered",
+      "interest": "not_considered"
+    },
+    "recommenders_required": 1,
+    "supplemental_essays": [
+      "Why Georgia Tech (300 words)"
+    ],
+    "required_subjects": ["Mathematics", "Physics"]
+  },
+  "student_profile": {
+    "student_id": "student_456",
+    "current_grade": "Year 12",
+    "weekly_hours_cap": 12,
+    "intended_major": "Computer Science",
+    "curriculum": "IB",
+    "gpa_unweighted": 3.7,
+    "gpa_weighted": 4.2,
+    "grades_by_subject": {
+      "Mathematics": "A",
+      "Computer Science": "A",
+      "Physics": "B+",
+      "English": "A-",
+      "Chemistry": "B",
+      "History": "A"
+    },
+    "tests": {
+      "sat": {
+        "score": 1380,
+        "date": "2024-10-05",
+        "prep_status": "taken"
+      },
+      "act": null
+    },
+    "constraints": [
+      "Varsity soccer practice Tue/Thu 16:00-18:00",
+      "Part-time job Saturday 10:00-14:00"
+    ]
+  },
+  "portfolio": [
+    {
+      "id": "e1",
+      "title": "Robotics Team Lead - Regional Competition Winner",
+      "lens": "Leadership",
+      "type": "Club",
+      "role_level": "Lead",
+      "area_of_activity": "Robotics",
+      "start_date": "2023-09-01",
+      "end_date": null,
+      "hours_per_week": 5,
+      "people_impacted": 25,
+      "team_size": 12,
+      "awards": [
+        {
+          "level": "regional"
+        }
+      ],
+      "theme_tags": ["Robotics", "Engineering", "Team Leadership"],
+      "artifact_links": [
+        "https://github.com/student/robotics-team-2024"
+      ],
+      "description_raw": "Led a team of 12 students in building competitive robots. Organized weekly meetings, coordinated with mentors, and managed competition logistics."
+    },
+    {
+      "id": "e2",
+      "title": "Machine Learning Wildfire Prediction System",
+      "lens": "Curiosity",
+      "type": "Project",
+      "role_level": "Founder",
+      "area_of_activity": "Machine Learning",
+      "start_date": "2024-06-01",
+      "end_date": "2024-08-31",
+      "hours_total": 120,
+      "people_impacted": 0,
+      "theme_tags": ["AI", "Machine Learning", "Climate Science"],
+      "artifact_links": [
+        "https://github.com/student/wildfire-predictor",
+        "https://student.dev/wildfire-demo"
+      ],
+      "description_raw": "Developed a ML model using satellite imagery to predict wildfire risk. Achieved 87% accuracy on test dataset."
+    },
+    {
+      "id": "e3",
+      "title": "Community Coding Workshop Organizer",
+      "lens": "Community",
+      "type": "Volunteering",
+      "role_level": "Founder",
+      "area_of_activity": "Education",
+      "start_date": "2024-01-15",
+      "end_date": null,
+      "hours_per_week": 3,
+      "people_impacted": 150,
+      "team_size": 5,
+      "awards": [],
+      "theme_tags": ["Education", "Community Service", "Programming"],
+      "artifact_links": [
+        "https://student.dev/coding-workshop"
+      ],
+      "description_raw": "Organized free coding workshops for underprivileged middle school students. Taught Python basics to 150+ students over 8 months."
+    },
+    {
+      "id": "e4",
+      "title": "Mobile App for Local Food Bank",
+      "lens": "Creativity",
+      "type": "Project",
+      "role_level": "Founder",
+      "area_of_activity": "Mobile Development",
+      "start_date": "2024-03-01",
+      "end_date": "2024-05-15",
+      "hours_total": 60,
+      "people_impacted": 500,
+      "theme_tags": ["Mobile Development", "Social Impact", "UI/UX"],
+      "artifact_links": [
+        "https://github.com/student/foodbank-app"
+      ],
+      "description_raw": "Created a React Native app connecting food banks with donors. Currently used by 3 local food banks serving 500+ families."
+    },
+    {
+      "id": "e5",
+      "title": "Hackathon Winner - Best Social Impact",
+      "lens": "Achievements",
+      "type": "Competition",
+      "role_level": "Core",
+      "area_of_activity": "Hackathon",
+      "start_date": "2024-11-10",
+      "end_date": "2024-11-12",
+      "hours_total": 36,
+      "people_impacted": 0,
+      "team_size": 4,
+      "awards": [
+        {
+          "level": "regional"
+        }
+      ],
+      "theme_tags": ["Hackathon", "Web Development", "Social Impact"],
+      "artifact_links": [
+        "https://devpost.com/student/hackathon-project"
+      ],
+      "description_raw": "Won Best Social Impact award at regional hackathon. Built a platform connecting volunteers with local nonprofits."
+    },
+    {
+      "id": "e6",
+      "title": "Personal Growth: Learning Spanish",
+      "lens": "Growth",
+      "type": "Certificate",
+      "role_level": "Member",
+      "area_of_activity": "Language Learning",
+      "start_date": "2023-09-01",
+      "end_date": "2024-06-01",
+      "hours_per_week": 2,
+      "people_impacted": 0,
+      "awards": [
+        {
+          "level": "national"
+        }
+      ],
+      "theme_tags": ["Language", "Personal Development"],
+      "artifact_links": [],
+      "description_raw": "Completed DELE B2 Spanish certification. Used language skills to volunteer as translator at community center."
+    },
+    {
+      "id": "e7",
+      "title": "Research Assistant - AI Ethics Project",
+      "lens": "Curiosity",
+      "type": "Research",
+      "role_level": "Core",
+      "area_of_activity": "Research",
+      "start_date": "2024-09-01",
+      "end_date": null,
+      "hours_per_week": 4,
+      "people_impacted": 0,
+      "team_size": 3,
+      "theme_tags": ["AI Ethics", "Research", "Philosophy"],
+      "artifact_links": [],
+      "description_raw": "Assisting university professor with research on ethical implications of AI in education. Literature review and data collection."
+    },
+    {
+      "id": "e8",
+      "title": "Math Tutoring - Peer Support Program",
+      "lens": "Community",
+      "type": "Volunteering",
+      "role_level": "Core",
+      "area_of_activity": "Tutoring",
+      "start_date": "2024-02-01",
+      "end_date": null,
+      "hours_per_week": 2,
+      "people_impacted": 30,
+      "theme_tags": ["Education", "Mathematics", "Peer Support"],
+      "artifact_links": [],
+      "description_raw": "Provide weekly math tutoring to struggling students. Helped 30+ students improve their grades by at least one letter grade."
+    }
+  ]
+}
+
