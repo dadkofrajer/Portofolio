@@ -1,42 +1,76 @@
-# Portfolio Analyzer API (v2)
+# Portfolio Analyzer API
 
-Minimal FastAPI service implementing the `/portfolio/analyze` endpoint per the v2 spec.
+A FastAPI service for analyzing student portfolios with support for portfolio analysis, test planning, and eligibility checking.
 
-## Setup
+## Project Structure
 
-1. Create a virtual environment:
+```
+Portofolio/
+├── backend/              # Python FastAPI backend
+│   ├── src/
+│   │   └── portfolio/   # Portfolio analysis module
+│   ├── tests/           # Test files
+│   ├── main.py          # FastAPI application entry point
+│   └── requirements.txt # Python dependencies
+├── frontend/            # Next.js dashboard (formerly dashboard/)
+├── examples/            # Example request JSON files
+└── README.md
+```
+
+## Backend Setup
+
+1. Navigate to the backend directory:
+```bash
+cd backend
+```
+
+2. Create a virtual environment:
 ```bash
 python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
 ```
 
-2. Install dependencies:
+3. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Set up OpenAI API key:
+4. Set up OpenAI API key:
 ```bash
-# Create a .env file in the project root
+# Create a .env file in the backend directory or project root
 echo "OPENAI_API_KEY=your_openai_api_key_here" > .env
 ```
 Get your API key from https://platform.openai.com/api-keys
 
-## Run (local)
+## Run Backend (local)
 
+From the `backend` directory:
 ```bash
-uvicorn app.main:app --reload
+uvicorn main:app --reload
 # visit http://127.0.0.1:8000/docs
 ```
 
-## Example
+Or from the project root:
+```bash
+cd backend
+uvicorn main:app --reload
+```
+
+## Example API Usage
 
 ```bash
-curl -X POST http://127.0.0.1:8000/portfolio/analyze \  -H 'Content-Type: application/json' \  --data @examples/request.json
+curl -X POST http://127.0.0.1:8000/portfolio/analyze \
+  -H 'Content-Type: application/json' \
+  --data @examples/request.json
 ```
 
 ## Tests
 
+From the `backend` directory:
 ```bash
 pytest -q
 ```
+
+## Frontend
+
+The frontend is a Next.js application located in the `frontend/` directory. See `frontend/README.md` for setup instructions.

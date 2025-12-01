@@ -1,5 +1,9 @@
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
 from fastapi.testclient import TestClient
-from app.main import app
+from main import app
 
 client = TestClient(app)
 
@@ -22,3 +26,4 @@ def test_analyze_shape():
     assert "lens_scores" in data["scores"]
     assert isinstance(data["recommendations"], list)
     assert isinstance(data["tasks"], list)
+

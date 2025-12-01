@@ -17,7 +17,8 @@ from .constants import (
 
 # Load .env file - try multiple locations
 env_paths = [
-    os.path.join(os.path.dirname(__file__), '..', '..', '.env'),  # Project root
+    os.path.join(os.path.dirname(__file__), '..', '..', '..', '.env'),  # Project root
+    os.path.join(os.path.dirname(__file__), '..', '..', '.env'),  # Backend root
     os.path.join(os.getcwd(), '.env'),  # Current working directory
     '.env'  # Relative path
 ]
