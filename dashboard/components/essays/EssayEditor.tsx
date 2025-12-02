@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { Essay } from '@/lib/essays/types';
 import { countWords, calculateStatus } from '@/lib/essays/utils';
 import { ArrowLeft, Save, Link as LinkIcon } from 'lucide-react';
@@ -16,6 +16,9 @@ export default function EssayEditor({ essay: initialEssay, onSave }: EssayEditor
   const [essay, setEssay] = useState<Essay>(initialEssay);
   const [wordCount, setWordCount] = useState(essay.wordCount);
   const [isSaving, setIsSaving] = useState(false);
+  const [lastSaved, setLastSaved] = useState<Date | null>(null);
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+  const autoSaveTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   // Update word count when content changes
   useEffect(() => {
@@ -29,29 +32,14 @@ export default function EssayEditor({ essay: initialEssay, onSave }: EssayEditor
     }
   }, [essay.content, essay.wordLimit, essay.status]);
 
-  const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const newContent = e.target.value;
-    setEssay(prev => ({
-      ...prev,
-      content: newContent,
-      updatedAt: new Date(),
-      lastEdited: new Date(),
-    }));
-  };
-
-  const handleGoogleDocChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEssay(prev => ({
-      ...prev,
-      googleDocUrl: e.target.value,
-      updatedAt: new Date(),
-    }));
-  };
-
-  const handleSave = async () => {
+  const performSave = useCallback(async (isAutoSave = false) => {
+    if (isSaving) return; // Prevent multiple simultaneous saves
+    
     setIsSaving(true);
     
     // Update word count and status
-    const finalWordCount = countWords(essay.content);
+    const currentContent = essay.content;
+    const finalWordCount = countWords(currentContent);
     const finalStatus = calculateStatus(finalWordCount, essay.wordLimit);
     
     const updatedEssay: Essay = {
@@ -72,10 +60,65 @@ export default function EssayEditor({ essay: initialEssay, onSave }: EssayEditor
     // Simulate save delay for better UX
     await new Promise(resolve => setTimeout(resolve, 300));
     setIsSaving(false);
+    setHasUnsavedChanges(false);
+    setLastSaved(new Date());
+  }, [essay, onSave, isSaving]);
+
+  // Auto-save functionality - debounced save after user stops typing
+  useEffect(() => {
+    if (!hasUnsavedChanges) return;
+
+    // Clear existing timer
+    if (autoSaveTimerRef.current) {
+      clearTimeout(autoSaveTimerRef.current);
+    }
+
+    // Set new timer
+    autoSaveTimerRef.current = setTimeout(() => {
+      performSave(true); // true = auto-save
+    }, 2000); // Auto-save 2 seconds after user stops typing
+
+    return () => {
+      if (autoSaveTimerRef.current) {
+        clearTimeout(autoSaveTimerRef.current);
+      }
+    };
+  }, [essay.content, essay.googleDocUrl, hasUnsavedChanges, performSave]);
+
+  const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const newContent = e.target.value;
+    setEssay(prev => ({
+      ...prev,
+      content: newContent,
+      updatedAt: new Date(),
+      lastEdited: new Date(),
+    }));
+    setHasUnsavedChanges(true);
+  };
+
+  const handleGoogleDocChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEssay(prev => ({
+      ...prev,
+      googleDocUrl: e.target.value,
+      updatedAt: new Date(),
+    }));
+    setHasUnsavedChanges(true);
+  };
+
+  const handleSave = () => {
+    performSave(false); // Manual save
   };
 
   const handleBack = () => {
     router.push('/essays');
+  };
+
+  const formatLastSaved = (date: Date): string => {
+    const seconds = Math.floor((new Date().getTime() - date.getTime()) / 1000);
+    if (seconds < 60) return 'just now';
+    if (seconds < 3600) return `${Math.floor(seconds / 60)}m ago`;
+    if (seconds < 86400) return `${Math.floor(seconds / 3600)}h ago`;
+    return date.toLocaleDateString();
   };
 
   const isOverLimit = wordCount > essay.wordLimit;
@@ -94,18 +137,31 @@ export default function EssayEditor({ essay: initialEssay, onSave }: EssayEditor
               <ArrowLeft size={20} />
               <span>Back to Essays</span>
             </button>
-            <button
-              onClick={handleSave}
-              disabled={isSaving}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors text-sm font-medium ${
-                isSaving
-                  ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
-                  : 'bg-[#60a5fa] text-white hover:bg-[#3b82f6]'
-              }`}
-            >
-              <Save size={16} />
-              {isSaving ? 'Saving...' : 'Save'}
-            </button>
+            <div className="flex items-center gap-4">
+              {hasUnsavedChanges && !isSaving && (
+                <span className="text-sm text-gray-400">Unsaved changes</span>
+              )}
+              {isSaving && (
+                <span className="text-sm text-[#60a5fa]">Saving...</span>
+              )}
+              {lastSaved && !hasUnsavedChanges && !isSaving && (
+                <span className="text-sm text-green-400">
+                  Saved {formatLastSaved(lastSaved)}
+                </span>
+              )}
+              <button
+                onClick={handleSave}
+                disabled={isSaving}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors text-sm font-medium ${
+                  isSaving
+                    ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
+                    : 'bg-[#60a5fa] text-white hover:bg-[#3b82f6]'
+                }`}
+              >
+                <Save size={16} />
+                {isSaving ? 'Saving...' : 'Save'}
+              </button>
+            </div>
           </div>
 
           <h1 className="text-white text-2xl font-semibold mb-2">{essay.title}</h1>
