@@ -115,11 +115,53 @@ class TaskTemplate(BaseModel):
     deadline: Optional[str] = Field(None, description="ISO date - nearest relevant school deadline")
     dod: list[str] = Field(default_factory=list, description="Definition of done")
 
+class CriticalImprovementSection(BaseModel):
+    gap_type: str
+    gap_description: str
+    severity: float
+    tasks: list[RecommendationTask] = Field(..., description="Exactly 3 tasks for this gap")
+
+class LensImprovementSection(BaseModel):
+    lens: str
+    current_score: float
+    improvement_opportunity: str
+    tasks: list[RecommendationTask] = Field(..., description="Exactly 3 tasks for this lens")
+
+class DiversitySpikeSection(BaseModel):
+    has_spike: bool
+    spike_theme: Optional[str] = None
+    spike_share: Optional[float] = None
+    coverage_index: float
+    needs_improvement: bool
+    tasks: list[RecommendationTask] = Field(default_factory=list, description="Tasks to improve diversity/spike if needed")
+
+class AlignmentPriority(BaseModel):
+    school_name: str
+    alignment_score: float
+    is_high_alignment: bool
+    priority_tasks: list[str] = Field(..., description="Task titles that should be prioritized for this school")
+    alignment_notes: str
+
+class TestAnalysis(BaseModel):
+    """Analysis of standardized test scores for a school"""
+    school_name: str
+    test_policy: TestUse
+    test_type: Optional[Literal["SAT", "ACT"]] = None
+    current_score: Optional[int] = None
+    mid50_scores: Optional[list[int]] = None  # [p25, p50, p75]
+    competitiveness: Optional[Literal["highly_competitive", "competitive", "below_competitive", "not_competitive"]] = None
+    recommendation: Literal["submit", "dont_submit", "reschedule", "leave_school_out"]
+    rationale: str
+    tasks: list[RecommendationTask] = Field(default_factory=list, description="Tasks for test prep if needed")
+
 class PortfolioAnalyzeResponse(BaseModel):
     scores: dict
     gaps: list[dict]
-    recommendations: list[RecommendationTask]
-    tasks: list[TaskTemplate]
+    critical_improvements: list[CriticalImprovementSection] = Field(default_factory=list)
+    lens_improvements: list[LensImprovementSection] = Field(default_factory=list)
+    diversity_spike: Optional[DiversitySpikeSection] = None
+    alignment_priorities: list[AlignmentPriority] = Field(default_factory=list)
+    standardized_tests: list[TestAnalysis] = Field(default_factory=list, description="Test analysis for each school")
 
 class TestPlanRequest(BaseModel):
     student_profile: StudentProfile
@@ -139,3 +181,16 @@ class EligibilityCheckResponse(BaseModel):
     eligible: bool
     warnings: list[str] = Field(default_factory=list)
     errors: list[str] = Field(default_factory=list)
+
+class RegenerateTasksRequest(BaseModel):
+    """Request to regenerate alternative tasks for a specific section"""
+    original_request: PortfolioAnalyzeRequest
+    section_type: Literal["critical_improvements", "lens_improvements", "diversity_spike"]
+    section_identifier: Optional[str] = Field(None, description="For critical_improvements: gap_type or lens name. For lens_improvements: lens name. For diversity_spike: can be None")
+    exclude_task_titles: list[str] = Field(default_factory=list, description="Task titles to exclude from new suggestions")
+
+class RegenerateTasksResponse(BaseModel):
+    """Response with alternative tasks for the requested section"""
+    section_type: str
+    section_identifier: Optional[str] = None
+    tasks: list[RecommendationTask] = Field(..., description="Exactly 3 alternative tasks")

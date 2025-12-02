@@ -3,9 +3,10 @@ from fastapi.encoders import jsonable_encoder
 from .models import (
     PortfolioAnalyzeRequest, PortfolioAnalyzeResponse,
     TestPlanRequest, TestPlanResponse,
-    EligibilityCheckRequest, EligibilityCheckResponse
+    EligibilityCheckRequest, EligibilityCheckResponse,
+    RegenerateTasksRequest, RegenerateTasksResponse
 )
-from .service import analyze_portfolio, plan_tests, check_eligibility
+from .service import analyze_portfolio, plan_tests, check_eligibility, regenerate_tasks_for_section
 
 router = APIRouter(prefix="/portfolio", tags=["portfolio"])
 
@@ -42,3 +43,19 @@ def check(req: EligibilityCheckRequest):
         raise HTTPException(status_code=422, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Eligibility check error: {e}")
+
+@router.post("/regenerate-tasks", response_model=RegenerateTasksResponse)
+def regenerate_tasks(req: RegenerateTasksRequest):
+    """Regenerate alternative tasks for a specific section"""
+    try:
+        result = regenerate_tasks_for_section(
+            req.original_request,
+            req.section_type,
+            req.section_identifier,
+            req.exclude_task_titles
+        )
+        return jsonable_encoder(result)
+    except ValueError as e:
+        raise HTTPException(status_code=422, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Task regeneration error: {e}")
