@@ -1,0 +1,96 @@
+{
+  "admission": {
+    "relative_importance": {
+      "GPA": "Very Important",
+      "Course_rigor": "Very Important",
+      "Test_scores": "Considered",
+      "Essay": "Important",
+      "Recommendation_letters": "Important",
+      "Extracurriculars": "Important",
+      "Talent_ability": "Considered",
+      "Interview": "Considered",
+      "First_generation_status": "Considered",
+      "Demonstrated_interest": "Considered"
+    },
+    "test_policy": "Standardized testing will be required for the Fall 2025 admissions cycle.",
+    "class_rank_importance": "Very Important",
+    "early_decision_vs_regular_decision_admit_rates": {
+      "early_decision_applicants": 3551,
+      "early_decision_admitted": 681,
+      "regular_decision_applicants": 31656,
+      "regular_decision_admitted": 1710
+    },
+    "application_requirements": {
+      "high_school_completion": "High school diploma or equivalent is not required",
+      "general_college_preparatory_program": "Recommended",
+      "high_school_units": {
+        "English": 4,
+        "Mathematics": 4,
+        "Science": 4,
+        "Foreign_language": 4,
+        "Social_studies": 4
+      }
+    },
+    "acceptance_rate": "4.7%",
+    "early_decision_acceptance_rate": "19.1%",
+    "yield_rate": "69.2%",
+    "geographic_distribution": {
+      "in_state": "1.2%",
+      "out_of_state": "98.8%"
+    },
+    "gender_breakdown": {
+      "men": 612,
+      "women": 554,
+      "another_gender": 16
+    },
+    "ethnic_demographics": {
+      "Nonresidents": 708,
+      "Hispanic_Latino": 447,
+      "Black_African_American": 279,
+      "White": 1999,
+      "American_Indian": 52,
+      "Asian": 590,
+      "Two_or_more_races": 342,
+      "Race_unknown": 153
+    },
+    "part_time_vs_full_time_student_mix": {
+      "full_time": 4570,
+      "part_time": 28
+    },
+    "percent_students_receiving_financial_aid": "78.0%",
+    "average_financial_aid_package": "$71,318",
+    "need_met_percent": "100%",
+    "percent_need_met_for_typical_student": "100%",
+    "percent_receiving_merit_aid": "0%",
+    "average_merit_award": "$0",
+    "total_cost_of_attendance": {
+      "tuition": "$69,207",
+      "required_fees": "$2,318",
+      "food_and_housing": "$20,920"
+    },
+    "student_faculty_ratio": "6.3 to 1",
+    "class_size_distribution": {
+      "less_than_20": 367,
+      "20_to_29": 130,
+      "30_to_39": 73,
+      "40_to_49": 22,
+      "50_to_99": 31,
+      "100_plus": 5
+    },
+    "most_common_majors": [
+      "Social Sciences",
+      "Biological/Life Sciences",
+      "Psychology",
+      "Mathematics and Statistics",
+      "Engineering"
+    ],
+    "degrees_awarded_by_field": {
+      "bachelor_degrees": 1156,
+      "master_degrees": 773,
+      "doctoral_degrees": {
+        "research_scholarship": 104,
+        "professional_practice": 91
+      }
+    }
+  }
+}

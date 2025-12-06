@@ -251,3 +251,4 @@ background-position: 0 0, 10px 0, 10px -10px, 0px 10px;
 - Overall contrast is reduced for better readability
 - Pattern overlays add subtle texture without being distracting
 
+
